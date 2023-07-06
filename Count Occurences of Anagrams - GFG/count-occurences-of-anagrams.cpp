@@ -10,32 +10,29 @@ class Solution{
 public:
 	int search(string pat, string txt) {
 	    
-	    int i = 0 , j = 0 ;
+	    int i = 0 , j = 0;
 	    int n = txt.size();
-	    int  k = pat.size();
 	    int ans = 0;
-	    vector<int> pt(26 , 0);
-	    vector<int> wind(26 , 0);
+	    unordered_map<char , int> mp;
+	    for(auto ch : pat) mp[ch]++;
 	    
-	    for(auto ch : pat) pt[ch - 'a']++;
+	    int count = mp.size();
 	    
-	    //silding window 
-	    
-	    while(j < n ){
+	    while(j<txt.size()){
+	        // calcution
+	        mp[txt[j]]--;
+	        if(mp[txt[j]] == 0) count--;
 	        
-	        wind[txt[j] - 'a']++;
-	        
-	        if(j - i + 1 < k) j++;
-	        
-	        else if(j-i+1 == k){
-	            if(wind == pt) ans++;
-	            
-	            wind[txt[i] - 'a']--;
-	            i++,j++;
+	        if(j-i + 1 < pat.size()) j++;
+	        else if(j-i+1 == pat.size()){
+	            if(count == 0) ans++;
+	            mp[txt[i]]++;
+	            if(mp[txt[i]] == 1) count++;
+	            i++ , j++;
 	        }
 	    }
-	    
 	    return ans;
+	    
 	}
 
 };
