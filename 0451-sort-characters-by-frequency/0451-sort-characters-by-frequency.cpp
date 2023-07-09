@@ -4,7 +4,7 @@ public:
         //phele map phir vector of pair bhot spae lega
         // so phele in vet of pair 
         
-        vector<pair<int , char>> vp(123 , {0,0}); // freq , char asci
+       vector<pair<int , char>> vp(123 , {0,0}); // freq , char asci
         
         for(auto ch : s){
             vp[ch] = {vp[ch].first+1 , ch};
